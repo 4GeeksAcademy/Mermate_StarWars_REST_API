@@ -106,13 +106,13 @@ def add_new_character():
 
     new_character = Characters(
         name=request_body_character["name"],
-        mass=request_body_character["mass"],
         height=request_body_character["height"],
+        mass=request_body_character["mass"],
         hair_color=request_body_character["hair_color"],
         skin_color=request_body_character["skin_color"], 
         eye_color=request_body_character["eye_color"], 
         birth_year=request_body_character["birth_year"],
-         gender=request_body_character["gender"],
+        gender=request_body_character["gender"],
            )
     db.session.add(new_character)
     db.session.commit()

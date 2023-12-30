@@ -10,7 +10,7 @@ class User(db.Model):
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
-        return '<User %r>' % self.id
+        return '<User %r>' % self.username
 
     def serialize(self):
         return {
@@ -22,8 +22,8 @@ class User(db.Model):
 class Characters(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), unique=True)
-    mass = db.Column(db.Integer)
     height = db.Column(db.Integer)
+    mass = db.Column(db.Integer)
     hair_color = db.Column(db.String(50))
     skin_color = db.Column(db.String(50))
     eye_color = db.Column(db.String(50))
@@ -31,7 +31,7 @@ class Characters(db.Model):
     gender = db.Column(db.String(50))
     
     def __repr__(self):
-        return '< Characters%r>' % self.id
+        return '< Characters%r>' % self.name
 
     def serialize(self):
         return {
@@ -76,7 +76,7 @@ class Planets(db.Model):
 
 
     def __repr__(self):
-        return '<Planets %r>' % self.id
+        return '<Planets %r>' % self.name
 
     def serialize(self):
         return {
