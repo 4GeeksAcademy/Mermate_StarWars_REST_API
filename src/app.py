@@ -68,7 +68,7 @@ def get_person(Character_id):
     
     return jsonify(person.serialize()), 200
 
-#  ['GET'] Listar todos los favoritos.
+#  ['GET'] Listar todos los  characters favoritos.
 
 @app.route('/fav_characters', methods=['GET'])
 def get_fav_characters():
@@ -95,6 +95,15 @@ def get_planet(planet_id):
 
 
     return jsonify(planet.serialize()), 200
+
+    #  ['GET'] Listar todos los  planets favoritos.
+
+@app.route('/fav_planets', methods=['GET'])
+def get_fav_planets():
+    fav_planets = Fav_Planets.query.all()
+    results = list(map(lambda Planets: Planets.serialize(), fav_planets))
+
+    return jsonify(results), 200
 
 
 #^[POST] añade un nuevo character
@@ -171,19 +180,25 @@ def add_new_fav_planet():
 
     return jsonify(request_body_fav_planet), 200
 
-# [DELETE] Elimina una Character favorito.
+# [DELETE] Elimina un Character favorito.
 
 @app.route('/fav_characters/<int:fav_characters_id>', methods=['DELETE'])
-def delete_fav_character(fav_characters_id):
-    fav_character = Fav_Characters.query.get(fav_characters_id)
+def delete_fav_character(Fav_Characters, id):
 
-    if not fav_character:
-        return jsonify({'message': 'Fav Character not found'}), 404
+    request_body_fav_character = request.get_json()
+
+    fav_character = Fav_Characters.query.get(Fav_Characters, id)
+
+    #if not fav_character:
+        #return jsonify({'message': 'Fav Character not found'}), 404
 
     db.session.delete(fav_character)
     db.session.commit()
 
-    return jsonify({'message': f'Fav character with ID {fav_characters_id} deleted successfully'}), 200
+    return jsonify(request_body_fav_character), 200
+
+
+    #return jsonify({'message': f'Fav character with ID {fav_characters_id} deleted successfully'}), 200
 
 # [DELETE] Elimina un planet favorito.
 

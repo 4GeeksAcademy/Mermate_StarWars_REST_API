@@ -21,7 +21,7 @@ class User(db.Model):
 
 class Characters(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), unique=True)
+    name = db.Column(db.String(50), unique=False)
     height = db.Column(db.Integer)
     mass = db.Column(db.Integer)
     hair_color = db.Column(db.String(50))
@@ -62,6 +62,8 @@ class Fav_Characters(db.Model):
             "character": self.character,
             "user": self.user,
         }
+    
+
     
 class Planets(db.Model):
     id = db.Column(db.Integer, primary_key=True)
