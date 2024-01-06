@@ -183,8 +183,8 @@ def add_new_fav_planet():
 # [DELETE] Elimina un Character favorito.
 
 @app.route('/fav_characters/<int:fav_characters_id>', methods=['DELETE'])
-def delete_fav_character(fav_Characters_id):
-    fav_character = Fav_Characters.query.get(fav_Characters_id)
+def delete_fav_character(fav_characters_id):
+    fav_character = Fav_Characters.query.get(fav_characters_id)
 
     if not fav_character:
         return jsonify({'message': 'Fav Character not found'}), 404
@@ -192,7 +192,7 @@ def delete_fav_character(fav_Characters_id):
     db.session.delete(fav_character)
     db.session.commit()
 
-    return jsonify({'message': f'Fav character with ID {fav_Characters_id} deleted successfully'}), 200
+    return jsonify({'message': f'Fav character with ID {fav_characters_id} deleted successfully'}), 200
 
 # [DELETE] Elimina un planet favorito.
 
